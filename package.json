@@ -1,0 +1,22 @@
+{
+  "name": "pacific-life-website",
+  "version": "1.0.0",
+  "description": "Pacific Life Corporate Overview Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build required'",
+    "start": "vercel dev"
+  },
+  "keywords": [
+    "pacific-life",
+    "insurance",
+    "corporate",
+    "website"
+  ],
+  "author": "Pacific Life",
+  "license": "MIT",
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  }
+}
