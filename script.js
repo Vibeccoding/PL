@@ -13,30 +13,84 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     navMenu.classList.remove('active');
 }));
 
-// Smooth scrolling for navigation links
+// Enhanced Smooth scrolling for navigation links with proper offset
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const headerHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
             });
+            
+            // Update active nav link immediately
+            updateActiveNavLink(targetId);
         }
     });
 });
 
-// Navbar background change on scroll
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = 'none';
+// Enhanced scroll spy for navigation with proper section detection
+function updateActiveNavLink(activeId = null) {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const headerHeight = document.querySelector('.navbar').offsetHeight;
+    
+    let current = activeId;
+    
+    if (!current) {
+        // Find the current section based on scroll position
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const section = sections[i];
+            const sectionTop = section.getBoundingClientRect().top + window.pageYOffset - headerHeight - 50;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            
+            if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom) {
+                current = section.getAttribute('id');
+                break;
+            }
+        }
+        
+        // If we're at the top, highlight the first section
+        if (window.pageYOffset < 100) {
+            current = 'about';
+        }
     }
+    
+    // Update nav link active states
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Navbar background change on scroll and active link updating
+let isScrolling = false;
+window.addEventListener('scroll', () => {
+    if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+            
+            // Update active navigation link
+            updateActiveNavLink();
+            isScrolling = false;
+        });
+    }
+    isScrolling = true;
 });
 
 // Process Flow Tab Functionality
@@ -448,6 +502,25 @@ function createParticleBackground() {
 // Initialize particle background after DOM loads
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(createParticleBackground, 1000);
+});
+
+// Initialize navigation on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Set initial active nav link
+    updateActiveNavLink();
+    
+    // Add scroll event listener for better performance
+    let ticking = false;
+    
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(updateActiveNavLink);
+            ticking = true;
+            setTimeout(() => { ticking = false; }, 100);
+        }
+    }
+    
+    window.addEventListener('scroll', onScroll, { passive: true });
 });
 
 console.log('Pacific Life website loaded successfully!');
