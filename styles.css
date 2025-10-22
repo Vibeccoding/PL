@@ -809,6 +809,127 @@ html {
     line-height: 1.5;
 }
 
+/* Workflow Section Styles */
+.workflow-section {
+    margin: 4rem 0;
+    padding: 3rem 0;
+    background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+    border-radius: 20px;
+}
+
+.workflow-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    margin-bottom: 3rem;
+    font-weight: 600;
+    position: relative;
+}
+
+.workflow-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #0066cc, #004499);
+    border-radius: 2px;
+}
+
+.workflow-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.workflow-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 102, 204, 0.1);
+}
+
+.workflow-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.workflow-item:nth-child(even) {
+    grid-template-columns: 1fr 1fr;
+}
+
+.workflow-item:nth-child(even) .workflow-image {
+    order: 2;
+}
+
+.workflow-item:nth-child(even) .workflow-content {
+    order: 1;
+}
+
+.workflow-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    background: #f5f5f5;
+}
+
+.workflow-img {
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    padding: 10px;
+}
+
+.workflow-item:hover .workflow-img {
+    transform: scale(1.02);
+}
+
+.workflow-content h4 {
+    font-size: 1.6rem;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.workflow-content p {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+.workflow-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.workflow-features .feature-tag {
+    background: linear-gradient(135deg, #0066cc, #0052a3);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: transform 0.2s ease;
+}
+
+.workflow-features .feature-tag:hover {
+    transform: translateY(-2px);
+}
+
 /* Domain Trainings Section */
 .trainings-section {
     background: #f8fafe;
@@ -1330,6 +1451,39 @@ html {
     }
     
     .feature-tag {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    /* Workflow Section Responsive */
+    .workflow-item {
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
+        padding: 2rem;
+    }
+    
+    .workflow-item:nth-child(even) .workflow-image,
+    .workflow-item:nth-child(even) .workflow-content {
+        order: initial;
+    }
+    
+    .workflow-title {
+        font-size: 1.8rem;
+    }
+    
+    .workflow-content h4 {
+        font-size: 1.4rem;
+    }
+    
+    .workflow-content p {
+        font-size: 1rem;
+    }
+    
+    .workflow-img {
+        min-height: 200px;
+    }
+    
+    .workflow-features .feature-tag {
         font-size: 0.8rem;
         padding: 0.4rem 0.8rem;
     }
