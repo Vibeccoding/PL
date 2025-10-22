@@ -1084,202 +1084,230 @@ html {
     font-weight: bold;
 }
 
-/* Assessments Section */
+/* Cognizant Learning Courses Section */
 .assessments-section {
     background: #f8fafe;
+    padding: 80px 0;
 }
 
-.assessments-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 4rem;
-}
-
-.assessment-category h3 {
-    font-size: 1.8rem;
-    color: #1a1a1a;
-    margin-bottom: 2rem;
+.cognizant-intro {
     text-align: center;
-}
-
-.assessment-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.assessment-item {
-    background: white;
+    max-width: 800px;
+    margin: 0 auto 3rem;
     padding: 2rem;
+    background: white;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
 }
 
-.assessment-info h4 {
-    color: #1a1a1a;
-    margin-bottom: 0.75rem;
-    font-size: 1.2rem;
-}
-
-.assessment-info p {
+.cognizant-intro p {
+    font-size: 1.1rem;
     color: #666;
-    margin-bottom: 1rem;
-    line-height: 1.5;
+    line-height: 1.7;
+    margin-bottom: 2rem;
 }
 
-.assessment-meta {
-    display: flex;
-    gap: 1rem;
-    font-size: 0.85rem;
-    color: #888;
-}
-
-.assessment-meta span {
-    display: flex;
+.platform-link {
+    display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #0066cc, #004499);
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
 }
 
-.take-assessment {
-    background: #0066cc;
+.platform-link:hover {
+    background: linear-gradient(135deg, #004499, #003366);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
+}
+
+.courses-table-container {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+}
+
+.courses-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.courses-table thead {
+    background: linear-gradient(135deg, #0066cc, #004499);
     color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
+}
+
+.courses-table th {
+    padding: 1.5rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.courses-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+.courses-table tbody tr:hover {
+    background-color: #f8fafe;
+}
+
+.courses-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.courses-table td {
+    padding: 1.5rem 1rem;
+    vertical-align: top;
+}
+
+.courses-table td:first-child {
+    font-weight: 600;
+    color: #1a1a1a;
+    min-width: 200px;
+}
+
+.courses-table td:nth-child(2) {
+    max-width: 300px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.courses-table td:nth-child(3),
+.courses-table td:nth-child(4) {
+    white-space: nowrap;
+    color: #666;
     font-weight: 500;
-    transition: background 0.3s ease;
+}
+
+.cert-badge {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
     white-space: nowrap;
 }
 
-.take-assessment:hover {
-    background: #004499;
+.start-course-btn {
+    background: linear-gradient(135deg, #0066cc, #004499);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 3px 10px rgba(0, 102, 204, 0.3);
 }
 
-.assessment-progress h3 {
-    font-size: 1.8rem;
+.start-course-btn:hover {
+    background: linear-gradient(135deg, #004499, #003366);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4);
+}
+
+.course-progress {
+    background: white;
+    border-radius: 15px;
+    padding: 3rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.course-progress h3 {
+    text-align: center;
     color: #1a1a1a;
+    font-size: 1.8rem;
     margin-bottom: 2rem;
+}
+
+.progress-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.progress-stat {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f8fafe;
+    border-radius: 15px;
+    border: 2px solid #e6f3ff;
+    transition: transform 0.3s ease;
+}
+
+.progress-stat:hover {
+    transform: translateY(-3px);
+}
+
+.progress-stat h4 {
+    font-size: 2.5rem;
+    color: #0066cc;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.progress-stat p {
+    color: #666;
+    font-weight: 500;
+}
+
+.certification-status {
     text-align: center;
 }
 
-.progress-dashboard {
+.certification-status h4 {
+    color: #1a1a1a;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+}
+
+.cert-badges-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
     max-width: 800px;
     margin: 0 auto;
 }
 
-.progress-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    text-align: center;
-}
-
-.progress-card h4 {
-    color: #1a1a1a;
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    background: #e0e0e0;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-}
-
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #0066cc, #004499);
-    transition: width 0.3s ease;
-}
-
-.progress-text {
-    color: #0066cc;
-    font-weight: 600;
-    font-size: 1.1rem;
-}
-
-.certification-badges {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: center;
-}
-
-.badge {
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+.cert-status {
+    padding: 0.8rem 1.2rem;
+    border-radius: 25px;
     font-size: 0.9rem;
     font-weight: 500;
+    transition: transform 0.3s ease;
 }
 
-.badge.earned {
-    background: #e8f5e8;
-    color: #2d7d32;
-}
-
-.badge.pending {
-    background: #fff3e0;
-    color: #f57c00;
-}
-
-/* Cognizant Learning Courses Specific Styles */
-.assessment-category:nth-child(3) {
-    grid-column: 1 / -1;
-}
-
-.assessment-category:nth-child(3) h3 {
-    background: linear-gradient(135deg, #0066cc, #004499);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 25px;
-    display: inline-block;
-    margin: 0 auto 2rem;
-    font-size: 1.8rem;
-    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
-}
-
-.assessment-category:nth-child(3) .assessment-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1.5rem;
-}
-
-.assessment-category:nth-child(3) .assessment-item {
-    border-left: 4px solid #0066cc;
-    position: relative;
-}
-
-.assessment-category:nth-child(3) .assessment-item::before {
-    content: '🎓';
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    opacity: 0.3;
-}
-
-.assessment-category:nth-child(3) .take-assessment {
-    background: linear-gradient(135deg, #0066cc, #004499);
-    box-shadow: 0 3px 10px rgba(0, 102, 204, 0.3);
-}
-
-.assessment-category:nth-child(3) .take-assessment:hover {
-    background: linear-gradient(135deg, #004499, #003366);
+.cert-status:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4);
+}
+
+.cert-status.earned {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+}
+
+.cert-status.pending {
+    background: linear-gradient(135deg, #ffc107, #ff9800);
+    color: white;
+    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.3);
 }
 
 /* Footer */
@@ -1681,29 +1709,35 @@ html {
         transform: rotate(90deg);
     }
 
-    .assessments-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    /* Cognizant Learning Courses Mobile Responsive */
+    .courses-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
-
-    .assessment-item {
-        flex-direction: column;
-        align-items: flex-start;
+    
+    .courses-table {
+        min-width: 800px;
+    }
+    
+    .courses-table th,
+    .courses-table td {
+        padding: 1rem 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .progress-overview {
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
     
-    /* Cognizant Courses Mobile Responsive */
-    .assessment-category:nth-child(3) .assessment-list {
+    .cert-badges-grid {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
     
-    .assessment-category:nth-child(3) h3 {
-        font-size: 1.5rem;
+    .platform-link {
         padding: 0.8rem 1.5rem;
-    }
-
-    .progress-dashboard {
-        grid-template-columns: 1fr;
+        font-size: 0.9rem;
     }
 
     .process-tabs {
