@@ -583,6 +583,103 @@ html {
     line-height: 1.6;
 }
 
+/* Pacific Life Foundation Overview */
+.foundation-overview {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, #f8fafe 0%, #e8f4fd 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.foundation-overview h3 {
+    text-align: center;
+    color: #0066cc;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.foundation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.impact-stat {
+    text-align: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.impact-stat:hover {
+    transform: translateY(-5px);
+}
+
+.impact-stat h4 {
+    font-size: 2.5rem;
+    color: #0066cc;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.impact-stat p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.foundation-focus-areas {
+    text-align: center;
+}
+
+.foundation-focus-areas h4 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.focus-areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+.focus-area {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.focus-area:hover {
+    transform: translateY(-3px);
+}
+
+.focus-area i {
+    font-size: 2rem;
+    color: #0066cc;
+    margin-bottom: 1rem;
+}
+
+.focus-area h5 {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.focus-area span {
+    color: #0066cc;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
 /* Architecture Section */
 .architecture-section {
     background: #f8fafe;
@@ -1349,6 +1446,29 @@ html {
         margin: 0;
         margin-top: 1rem;
         width: 100%;
+    }
+
+    .foundation-overview {
+        padding: 2rem;
+        margin-top: 2rem;
+    }
+
+    .foundation-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .focus-areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .impact-stat h4 {
+        font-size: 2rem;
+    }
+
+    .foundation-overview h3 {
+        font-size: 1.5rem;
     }
 
     .process-flow {
