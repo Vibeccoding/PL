@@ -1235,6 +1235,53 @@ html {
     color: #f57c00;
 }
 
+/* Cognizant Learning Courses Specific Styles */
+.assessment-category:nth-child(3) {
+    grid-column: 1 / -1;
+}
+
+.assessment-category:nth-child(3) h3 {
+    background: linear-gradient(135deg, #0066cc, #004499);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    display: inline-block;
+    margin: 0 auto 2rem;
+    font-size: 1.8rem;
+    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+}
+
+.assessment-category:nth-child(3) .assessment-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.assessment-category:nth-child(3) .assessment-item {
+    border-left: 4px solid #0066cc;
+    position: relative;
+}
+
+.assessment-category:nth-child(3) .assessment-item::before {
+    content: '🎓';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.assessment-category:nth-child(3) .take-assessment {
+    background: linear-gradient(135deg, #0066cc, #004499);
+    box-shadow: 0 3px 10px rgba(0, 102, 204, 0.3);
+}
+
+.assessment-category:nth-child(3) .take-assessment:hover {
+    background: linear-gradient(135deg, #004499, #003366);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4);
+}
+
 /* Footer */
 .footer {
     background: #1a1a1a;
@@ -1643,6 +1690,16 @@ html {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
+    }
+    
+    /* Cognizant Courses Mobile Responsive */
+    .assessment-category:nth-child(3) .assessment-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .assessment-category:nth-child(3) h3 {
+        font-size: 1.5rem;
+        padding: 0.8rem 1.5rem;
     }
 
     .progress-dashboard {
