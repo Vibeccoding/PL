@@ -67,6 +67,11 @@ class SPANavigation {
         if (targetSection) {
             targetSection.classList.add('active');
             this.currentSection = sectionId;
+            
+            // Dispatch custom event for section change
+            document.dispatchEvent(new CustomEvent('sectionChanged', {
+                detail: { sectionId: sectionId }
+            }));
         }
     }
 
@@ -258,3 +263,188 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 console.log('Pacific Life SPA loaded successfully!');
+
+// Cognizant Learning Course Functionality
+function initializeCognizantCourses() {
+    // Add event listeners to all "Start Course" buttons
+    const courseButtons = document.querySelectorAll('.start-course-btn');
+    
+    courseButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get the course name from the table row
+            const row = this.closest('tr');
+            const courseName = row.querySelector('td:first-child strong').textContent;
+            
+            // Show confirmation modal/alert
+            const confirmStart = confirm(`Ready to start the course: "${courseName}"?\n\nYou will be redirected to the Cognizant Learning Platform.`);
+            
+            if (confirmStart) {
+                // Add loading state to button
+                this.textContent = 'Redirecting...';
+                this.disabled = true;
+                
+                // Redirect to Cognizant Learning Platform after short delay
+                setTimeout(() => {
+                    window.open('https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D1570787%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253D%252528if4%252529%25252520insurance%25252520claims%25252520handling%25252520process%2526startRow%253D0%26SearchCallerID%3D2', '_blank');
+                    
+                    // Reset button after redirect
+                    setTimeout(() => {
+                        this.textContent = 'Start Course';
+                        this.disabled = false;
+                    }, 1000);
+                }, 500);
+            }
+        });
+    });
+    
+    // Add event listener to the main platform link
+    const platformLink = document.querySelector('.platform-link');
+    if (platformLink) {
+        platformLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Add visual feedback
+            this.style.transform = 'scale(0.98)';
+            this.style.opacity = '0.8';
+            
+            setTimeout(() => {
+                window.open(this.href, '_blank');
+                this.style.transform = 'scale(1)';
+                this.style.opacity = '1';
+            }, 150);
+        });
+    }
+}
+
+// Table interaction enhancements
+function enhanceTableInteractions() {
+    const tableRows = document.querySelectorAll('.courses-table tbody tr');
+    
+    tableRows.forEach(row => {
+        // Add hover effects and click functionality
+        row.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#f0f8ff';
+            this.style.transform = 'translateX(5px)';
+            this.style.transition = 'all 0.3s ease';
+        });
+        
+        row.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '';
+            this.style.transform = 'translateX(0)';
+        });
+        
+        // Optional: Make entire row clickable to start course
+        row.addEventListener('click', function(e) {
+            // Only trigger if not clicking on the button directly
+            if (!e.target.classList.contains('start-course-btn')) {
+                const button = this.querySelector('.start-course-btn');
+                if (button) {
+                    button.click();
+                }
+            }
+        });
+    });
+}
+
+// Training functionality for Domain Trainings section
+function startTraining(trainingId) {
+    const button = event.target;
+    const originalText = button.textContent;
+    
+    // Disable button and show loading state
+    button.disabled = true;
+    button.textContent = 'Loading...';
+    
+    // Show confirmation dialog
+    const confirmStart = confirm(`Are you ready to start this training course? You will be redirected to the Cognizant Learning Platform.`);
+    
+    if (confirmStart) {
+        // Simulate loading and redirect to Cognizant Learning Platform
+        setTimeout(() => {
+            // Open Cognizant Learning Platform in new tab
+            window.open('https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43', '_blank');
+            
+            // Reset button after redirect
+            setTimeout(() => {
+                button.disabled = false;
+                button.textContent = originalText;
+            }, 1000);
+        }, 500);
+    } else {
+        // Reset button if user cancels
+        button.disabled = false;
+        button.textContent = originalText;
+    }
+}
+
+// Initialize training functionality when DOM is loaded
+function initializeTrainingCourses() {
+    // Add event listeners to training buttons if they exist
+    const trainingButtons = document.querySelectorAll('.start-training-btn');
+    trainingButtons.forEach(button => {
+        // Remove any existing event listeners
+        button.removeEventListener('click', handleTrainingClick);
+        // Add new event listener
+        button.addEventListener('click', handleTrainingClick);
+    });
+}
+
+function handleTrainingClick(event) {
+    const button = event.target;
+    const row = button.closest('tr');
+    const courseName = row.querySelector('td:first-child').textContent;
+    
+    const originalText = button.textContent;
+    
+    // Disable button and show loading state
+    button.disabled = true;
+    button.textContent = 'Loading...';
+    
+    // Show confirmation dialog with course name
+    const confirmStart = confirm(`Are you ready to start the "${courseName}" training course? You will be redirected to the Cognizant Learning Platform.`);
+    
+    if (confirmStart) {
+        // Simulate loading and redirect to Cognizant Learning Platform
+        setTimeout(() => {
+            // Open Cognizant Learning Platform in new tab
+            window.open('https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43', '_blank');
+            
+            // Reset button after redirect
+            setTimeout(() => {
+                button.disabled = false;
+                button.textContent = originalText;
+            }, 1000);
+        }, 500);
+    } else {
+        // Reset button if user cancels
+        button.disabled = false;
+        button.textContent = originalText;
+    }
+}
+
+// Initialize course functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait for SPA navigation to be ready
+    setTimeout(() => {
+        initializeCognizantCourses();
+        initializeTrainingCourses();
+        enhanceTableInteractions();
+    }, 100);
+});
+
+// Also initialize when navigating to sections
+document.addEventListener('sectionChanged', (e) => {
+    if (e.detail.sectionId === 'assessments') {
+        setTimeout(() => {
+            initializeCognizantCourses();
+            enhanceTableInteractions();
+        }, 100);
+    } else if (e.detail.sectionId === 'trainings') {
+        setTimeout(() => {
+            initializeTrainingCourses();
+            enhanceTableInteractions();
+        }, 100);
+    }
+});

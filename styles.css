@@ -680,6 +680,96 @@ html {
     font-weight: 700;
 }
 
+/* Foundation Programs Section */
+.foundation-programs {
+    margin-top: 3rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, #fff5e6 0%, #f0f8ff 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.foundation-programs h4 {
+    text-align: center;
+    color: #0066cc;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.program-intro {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.program-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #0066cc;
+}
+
+.program-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.program-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #0066cc, #004499);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.program-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.program-card h5 {
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.program-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.program-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+    color: #0066cc;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 102, 204, 0.2);
+}
+
 /* Architecture Section */
 .architecture-section {
     background: #f8fafe;
@@ -935,59 +1025,146 @@ html {
     background: #f8fafe;
 }
 
-.trainings-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
-.training-domain {
+/* Training Introduction */
+.training-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    padding: 2rem;
     background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.training-domain:hover {
-    transform: translateY(-5px);
-}
-
-.domain-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #0066cc, #004499);
     border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
-.domain-icon i {
-    font-size: 1.8rem;
+.training-intro p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+/* Training Table Styles */
+.training-table-container {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+}
+
+.training-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.training-table thead {
+    background: linear-gradient(135deg, #0066cc, #004499);
     color: white;
 }
 
-.training-domain h3 {
-    font-size: 1.4rem;
+.training-table th {
+    padding: 1.5rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.training-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.training-table tbody tr:hover {
+    background-color: #f8fafe !important;
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+}
+
+.training-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.training-table td {
+    padding: 1.5rem 1rem;
+    vertical-align: top;
+}
+
+.training-table td:first-child {
+    font-weight: 600;
     color: #1a1a1a;
-    margin-bottom: 1.5rem;
+    min-width: 200px;
 }
 
-.training-modules {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.module {
-    padding: 0.75rem 1rem;
-    background: #f8fafe;
-    border-radius: 8px;
+.training-table td:nth-child(2) {
+    max-width: 300px;
+    line-height: 1.5;
     color: #666;
-    font-size: 0.95rem;
-    border-left: 3px solid #0066cc;
+}
+
+.training-table td:nth-child(3),
+.training-table td:nth-child(4) {
+    white-space: nowrap;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Training Button Styles */
+.start-training-btn {
+    background: linear-gradient(135deg, #0066cc, #004499);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 3px 10px rgba(0, 102, 204, 0.3);
+}
+
+.start-training-btn:hover {
+    background: linear-gradient(135deg, #004499, #003366);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4);
+}
+
+.start-training-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+}
+
+.start-training-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+.start-training-btn:disabled:hover {
+    background: #cccccc;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Training Progress Section */
+.training-progress {
+    background: white;
+    border-radius: 15px;
+    padding: 3rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.training-progress h3 {
+    text-align: center;
+    color: #1a1a1a;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
 }
 
 /* Process Flows Section */
@@ -1160,10 +1337,6 @@ html {
     transition: background-color 0.3s ease;
 }
 
-.courses-table tbody tr:hover {
-    background-color: #f8fafe;
-}
-
 .courses-table tbody tr:last-child {
     border-bottom: none;
 }
@@ -1222,6 +1395,38 @@ html {
     box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4);
 }
 
+.start-course-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+}
+
+.start-course-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+.start-course-btn:disabled:hover {
+    background: #cccccc;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Enhanced table row interactions */
+.courses-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.courses-table tbody tr:hover {
+    background-color: #f8fafe !important;
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+}
+
 .course-progress {
     background: white;
     border-radius: 15px;
@@ -1266,48 +1471,6 @@ html {
 .progress-stat p {
     color: #666;
     font-weight: 500;
-}
-
-.certification-status {
-    text-align: center;
-}
-
-.certification-status h4 {
-    color: #1a1a1a;
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-}
-
-.cert-badges-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.cert-status {
-    padding: 0.8rem 1.2rem;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: transform 0.3s ease;
-}
-
-.cert-status:hover {
-    transform: translateY(-2px);
-}
-
-.cert-status.earned {
-    background: linear-gradient(135deg, #28a745, #20c997);
-    color: white;
-    box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
-}
-
-.cert-status.pending {
-    background: linear-gradient(135deg, #ffc107, #ff9800);
-    color: white;
-    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.3);
 }
 
 /* Footer */
@@ -1700,6 +1863,32 @@ html {
         font-size: 1.5rem;
     }
 
+    .foundation-programs {
+        padding: 2rem;
+        margin-top: 2rem;
+    }
+
+    .foundation-programs h4 {
+        font-size: 1.5rem;
+    }
+
+    .programs-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .program-card {
+        padding: 1.5rem;
+    }
+
+    .program-card h5 {
+        font-size: 1.2rem;
+    }
+
+    .program-stats {
+        justify-content: center;
+    }
+
     .process-flow {
         flex-direction: column;
         align-items: center;
@@ -1725,14 +1914,30 @@ html {
         font-size: 0.85rem;
     }
     
+    /* Training Table Mobile Responsive */
+    .training-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .training-table {
+        min-width: 800px;
+    }
+    
+    .training-table th,
+    .training-table td {
+        padding: 1rem 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .start-training-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+    
     .progress-overview {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
-    }
-    
-    .cert-badges-grid {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
     }
     
     .platform-link {
