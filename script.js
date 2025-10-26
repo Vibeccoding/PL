@@ -110,7 +110,7 @@ class SPANavigation {
     }
 
     nextSection() {
-        const sectionIds = ['hero', 'about', 'business-units', 'bootcamp', 'timeline', 'architecture', 'trainings', 'processes', 'assessments'];
+        const sectionIds = ['hero', 'about', 'goals', 'business-units', 'bootcamp', 'timeline', 'architecture', 'trainings', 'processes', 'assessments', 'support'];
         const currentIndex = sectionIds.indexOf(this.currentSection);
         const nextIndex = (currentIndex + 1) % sectionIds.length;
         
@@ -119,7 +119,7 @@ class SPANavigation {
     }
 
     prevSection() {
-        const sectionIds = ['hero', 'about', 'business-units', 'bootcamp', 'timeline', 'architecture', 'trainings', 'processes', 'assessments'];
+        const sectionIds = ['hero', 'about', 'goals', 'business-units', 'bootcamp', 'timeline', 'architecture', 'trainings', 'processes', 'assessments', 'support'];
         const currentIndex = sectionIds.indexOf(this.currentSection);
         const prevIndex = currentIndex > 0 ? currentIndex - 1 : sectionIds.length - 1;
         
