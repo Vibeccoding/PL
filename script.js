@@ -25,6 +25,21 @@ class SPANavigation {
             });
         });
 
+        // Footer navigation links
+        const footerLinks = document.querySelectorAll('.footer-section a[href^="#"]');
+        footerLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                if (targetId) { // Only proceed if there's actually a target
+                    this.showSection(targetId);
+                    this.updateActiveNavLink(targetId);
+                    // Scroll to top after navigation
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+
         // Mobile navigation toggle
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
@@ -277,6 +292,18 @@ function initializeCognizantCourses() {
             const row = this.closest('tr');
             const courseName = row.querySelector('td:first-child strong').textContent;
             
+            // Define specific course URLs for assessments
+            const assessmentUrls = {
+                'Digital Transformation Fundamentals': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D1952495%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DDigital%25252520Transformation%25252520Fundamentals%2526startRow%253D0%26SearchCallerID%3D2',
+                'Cloud-First Architecture': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D409083%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DCloud%25252520first%25252520Architecture%2526startRow%253D0%26SearchCallerID%3D2',
+                'Data Analytics & AI in Insurance': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D2030656%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DData%25252520Anayltics%25252520%25252526%25252520AI%25252520insurance%2526startRow%253D0%26SearchCallerID%3D2',
+                'Agile Delivery Excellence': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D855995%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DAgile%25252520Delivery%25252520excellence%2526startRow%253D0%26SearchCallerID%3D2',
+                'Customer Experience Innovation': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D431177%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DCustomer%25252520experience%25252520innovation%2526startRow%253D0%26SearchCallerID%3D2'
+            };
+            
+            // Get the specific course URL or use default
+            const courseUrl = assessmentUrls[courseName] || 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D1570787%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253D%252528if4%252529%25252520insurance%25252520claims%25252520handling%25252520process%2526startRow%253D0%26SearchCallerID%3D2';
+            
             // Show confirmation modal/alert
             const confirmStart = confirm(`Ready to start the course: "${courseName}"?\n\nYou will be redirected to the Cognizant Learning Platform.`);
             
@@ -285,9 +312,9 @@ function initializeCognizantCourses() {
                 this.textContent = 'Redirecting...';
                 this.disabled = true;
                 
-                // Redirect to Cognizant Learning Platform after short delay
+                // Redirect to specific course URL after short delay
                 setTimeout(() => {
-                    window.open('https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D1570787%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253D%252528if4%252529%25252520insurance%25252520claims%25252520handling%25252520process%2526startRow%253D0%26SearchCallerID%3D2', '_blank');
+                    window.open(courseUrl, '_blank');
                     
                     // Reset button after redirect
                     setTimeout(() => {
@@ -398,6 +425,18 @@ function handleTrainingClick(event) {
     
     const originalText = button.textContent;
     
+    // Define specific course URLs
+    const courseUrls = {
+        'Life Insurance Fundamentals': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D2198393%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DLife%25252520Insurance%25252520Fundamentals%2526startRow%253D0%26SearchCallerID%3D2',
+        'Annuity Products & Solutions': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D2288431%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DAnnuity%25252520Products%25252520%25252526%25252520Solutions%2526startRow%253D0%26SearchCallerID%3D2',
+        'Risk Assessment & Underwriting': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D430359%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DRisk%25252520Assessment%25252520%25252526%25252520Underwriting%2526startRow%253D20%26SearchCallerID%3D2',
+        'Financial Planning & Analysis': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D1646323%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DFinancial%25252520Planning%25252520%25252526%25252520Analysis%2526startRow%253D0%26SearchCallerID%3D2',
+        'Investment Management': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D447981%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DInvestment%25252520Management%2526startRow%253D0%26SearchCallerID%3D2'
+    };
+    
+    // Get the course URL or use default
+    const courseUrl = courseUrls[courseName] || 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43';
+    
     // Disable button and show loading state
     button.disabled = true;
     button.textContent = 'Loading...';
@@ -406,10 +445,10 @@ function handleTrainingClick(event) {
     const confirmStart = confirm(`Are you ready to start the "${courseName}" training course? You will be redirected to the Cognizant Learning Platform.`);
     
     if (confirmStart) {
-        // Simulate loading and redirect to Cognizant Learning Platform
+        // Simulate loading and redirect to specific course URL
         setTimeout(() => {
-            // Open Cognizant Learning Platform in new tab
-            window.open('https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43', '_blank');
+            // Open specific Cognizant Learning course in new tab
+            window.open(courseUrl, '_blank');
             
             // Reset button after redirect
             setTimeout(() => {
@@ -445,6 +484,88 @@ document.addEventListener('sectionChanged', (e) => {
         setTimeout(() => {
             initializeTrainingCourses();
             enhanceTableInteractions();
+        }, 100);
+    }
+});
+
+// Contact Form Functionality
+function initializeContactForm() {
+    const contactForm = document.querySelector('.contact-form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        
+        // Show loading state
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission (replace with actual form handling)
+        setTimeout(() => {
+            // Reset form
+            this.reset();
+            
+            // Show success message
+            submitBtn.textContent = 'Message Sent!';
+            submitBtn.style.background = 'linear-gradient(135deg, #48bb78 0%, #38a169 100%)';
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            }, 3000);
+            
+            // In a real application, you would send the data to your server
+            console.log('Form Data:', Object.fromEntries(formData));
+            
+        }, 1500); // Simulate network delay
+    });
+
+    // Form validation enhancements
+    const requiredFields = contactForm.querySelectorAll('[required]');
+    requiredFields.forEach(field => {
+        field.addEventListener('blur', function() {
+            validateField(this);
+        });
+        
+        field.addEventListener('input', function() {
+            if (this.classList.contains('error')) {
+                validateField(this);
+            }
+        });
+    });
+}
+
+function validateField(field) {
+    const isValid = field.checkValidity();
+    
+    if (!isValid) {
+        field.classList.add('error');
+        field.style.borderColor = '#e53e3e';
+    } else {
+        field.classList.remove('error');
+        field.style.borderColor = '#e2e8f0';
+    }
+    
+    return isValid;
+}
+
+// Initialize contact form when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeContactForm();
+});
+
+// Also initialize when navigating to support section
+document.addEventListener('sectionChanged', (e) => {
+    if (e.detail.sectionId === 'support') {
+        setTimeout(() => {
+            initializeContactForm();
         }, 100);
     }
 });
