@@ -886,6 +886,24 @@ html {
     margin-bottom: 2rem;
 }
 
+.foundation-intro {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+}
+
+.focus-intro {
+    text-align: center;
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+}
+
 .foundation-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
