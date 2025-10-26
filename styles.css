@@ -244,6 +244,293 @@ html {
     background: #f8fafe;
 }
 
+/* Strategic Goals Section */
+.goals-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 0;
+}
+
+.goals-section .section-title {
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.goals-intro {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.vision-statement {
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.95);
+    font-style: italic;
+}
+
+.goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.goal-category {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.goal-category:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.goal-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: white;
+}
+
+.goal-category h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.goal-targets {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.target-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid rgba(255, 255, 255, 0.6);
+}
+
+.target-item h4 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.target-item p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.progress-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.progress-indicator span {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: white;
+}
+
+.progress-indicator .current {
+    background: rgba(72, 187, 120, 0.3);
+    border: 1px solid rgba(72, 187, 120, 0.5);
+}
+
+.progress-indicator .target {
+    background: rgba(237, 137, 54, 0.3);
+    border: 1px solid rgba(237, 137, 54, 0.5);
+}
+
+/* Goals Timeline */
+.goals-timeline {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.goals-timeline h3 {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    font-weight: 600;
+}
+
+.timeline-goals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.timeline-goal {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.timeline-goal:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.goal-year {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.goal-milestones h4 {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.goal-milestones ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.goal-milestones li {
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+    line-height: 1.4;
+}
+
+.goal-milestones li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+}
+
+/* Goals Section Responsive */
+@media (max-width: 768px) {
+    .goals-section {
+        padding: 60px 0;
+    }
+    
+    .vision-statement {
+        font-size: 1.2rem;
+        padding: 0 1rem;
+    }
+    
+    .goals-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .goal-category {
+        padding: 2rem;
+    }
+    
+    .goal-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .target-item {
+        padding: 1rem;
+    }
+    
+    .progress-indicator {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+    
+    .progress-indicator span {
+        text-align: center;
+    }
+    
+    .goals-timeline {
+        padding: 2rem;
+    }
+    
+    .goals-timeline h3 {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+    }
+    
+    .timeline-goals {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .timeline-goal {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .goals-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .goal-category {
+        padding: 1.5rem;
+    }
+    
+    .vision-statement {
+        font-size: 1.1rem;
+    }
+    
+    .goal-category h3 {
+        font-size: 1.3rem;
+    }
+    
+    .target-item h4 {
+        font-size: 1.1rem;
+    }
+    
+    .goals-timeline {
+        padding: 1.5rem;
+    }
+}
+
 .about-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
