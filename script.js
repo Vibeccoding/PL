@@ -380,6 +380,17 @@ function startTraining(trainingId) {
     const button = event.target;
     const originalText = button.textContent;
     
+    // Define specific URLs for each training course
+    const trainingUrls = {
+        'life-insurance': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D2198393%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DLife%25252520Insurance%25252520Fundamentals%2526startRow%253D0%26SearchCallerID%3D2',
+        'annuity-products': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D2288431%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DAnnuity%25252520Products%25252520%25252526%25252520Solutions%2526startRow%253D0%26SearchCallerID%3D2',
+        'risk-assessment': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D430359%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DRisk%25252520Assessment%25252520%25252526%25252520Underwriting%2526startRow%253D20%26SearchCallerID%3D2',
+        'financial-planning': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D1646323%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DFinancial%25252520Planning%25252520%25252526%25252520Analysis%2526startRow%253D0%26SearchCallerID%3D2',
+        'investment-mgmt': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D447981%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DInvestment%25252520Management%2526startRow%253D0%26SearchCallerID%3D2',
+        // Default URL for courses that don't have specific links yet
+        'default': 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
+    };
+    
     // Disable button and show loading state
     button.disabled = true;
     button.textContent = 'Loading...';
@@ -388,10 +399,13 @@ function startTraining(trainingId) {
     const confirmStart = confirm(`Are you ready to start this training course? You will be redirected to the Cognizant Learning Platform.`);
     
     if (confirmStart) {
-        // Simulate loading and redirect to Cognizant Learning Platform
+        // Get the specific URL for this training course
+        const courseUrl = trainingUrls[trainingId] || trainingUrls['default'];
+        
+        // Simulate loading and redirect to specific course
         setTimeout(() => {
-            // Open Cognizant Learning Platform in new tab
-            window.open('https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43', '_blank');
+            // Open specific course in new tab
+            window.open(courseUrl, '_blank');
             
             // Reset button after redirect
             setTimeout(() => {
