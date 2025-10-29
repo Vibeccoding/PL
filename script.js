@@ -393,15 +393,21 @@ function enhanceTableInteractions() {
 function initializeTrainingButtons() {
     // Add a flag to prevent multiple initializations
     if (window.trainingButtonsInitialized) {
+        console.log('Training buttons already initialized, skipping...');
         return;
     }
     
+    console.log('Initializing training buttons...');
+    
     // Clear all existing event listeners first by cloning buttons
     const trainingButtons = document.querySelectorAll('.start-training-btn');
+    console.log(`Found ${trainingButtons.length} training buttons to initialize`);
     
-    trainingButtons.forEach(button => {
+    trainingButtons.forEach((button, index) => {
         // Remove any existing data attributes and event listeners
         button.removeAttribute('data-processing');
+        // Add a unique identifier for debugging
+        button.setAttribute('data-button-id', `training-btn-${index}`);
         // Clone the button to remove all event listeners
         const newButton = button.cloneNode(true);
         button.parentNode.replaceChild(newButton, button);
@@ -409,21 +415,27 @@ function initializeTrainingButtons() {
     
     // Get the new buttons and add a single event listener
     const newTrainingButtons = document.querySelectorAll('.start-training-btn');
-    newTrainingButtons.forEach(button => {
+    newTrainingButtons.forEach((button, index) => {
         // Add a flag to track if button is being processed
         button.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
+            console.log(`Training button clicked: ${this.getAttribute('data-button-id')}`);
+            
             // Prevent double-clicks
             if (this.dataset.processing === 'true') {
+                console.log('Button already processing, ignoring click');
                 return;
             }
             
             const courseKey = this.getAttribute('data-course');
             if (courseKey) {
+                console.log(`Starting course: ${courseKey}`);
                 this.dataset.processing = 'true';
                 handleSingleTrainingCourse(courseKey, this);
+            } else {
+                console.error('No course key found for button');
             }
         }, { once: false }); // Explicitly set once to false
     });
@@ -435,6 +447,8 @@ function initializeTrainingButtons() {
 
 // Single, clean training course handler
 function handleSingleTrainingCourse(courseKey, button) {
+    console.log(`handleSingleTrainingCourse called with courseKey: ${courseKey}`);
+    
     // Map course keys to URLs and names
     const courseData = {
         'life-insurance': {
@@ -494,28 +508,35 @@ function handleSingleTrainingCourse(courseKey, button) {
         return;
     }
 
+    console.log(`Found course: ${course.name}`);
     const originalText = button.textContent;
     
     // Disable button and show loading state
     button.disabled = true;
     button.textContent = 'Loading...';
+    console.log('Button disabled, showing loading state');
     
     // Show confirmation dialog
+    console.log('Showing confirmation dialog');
     const confirmStart = confirm(`Are you ready to start the "${course.name}" training course? You will be redirected to the Cognizant Learning Platform.`);
     
     if (confirmStart) {
+        console.log('User confirmed, redirecting...');
         // Redirect to course URL
         setTimeout(() => {
             window.open(course.url, '_blank');
+            console.log('Opened course URL in new tab');
             
             // Reset button after redirect
             setTimeout(() => {
                 button.disabled = false;
                 button.textContent = originalText;
                 button.dataset.processing = 'false';
+                console.log('Button reset to original state');
             }, 1000);
         }, 500);
     } else {
+        console.log('User cancelled, resetting button');
         // Reset button if user cancels
         button.disabled = false;
         button.textContent = originalText;
@@ -523,9 +544,9 @@ function handleSingleTrainingCourse(courseKey, button) {
     }
 }
 
-// Training buttons will be initialized in main DOM ready
+// Training buttons will be initialized in main DOM ready only
 
-// Also initialize when navigating to sections
+// Also initialize when navigating to sections (but skip training buttons)
 document.addEventListener('sectionChanged', (e) => {
     if (e.detail.sectionId === 'assessments') {
         setTimeout(() => {
@@ -534,7 +555,7 @@ document.addEventListener('sectionChanged', (e) => {
         }, 100);
     } else if (e.detail.sectionId === 'trainings') {
         setTimeout(() => {
-            initializeTrainingButtons(); // Only call this once
+            // Only enhance table interactions, training buttons already initialized
             enhanceTableInteractions();
         }, 100);
     }
