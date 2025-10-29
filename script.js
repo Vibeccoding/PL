@@ -295,12 +295,31 @@ console.log('Pacific Life SPA loaded successfully!');
 
 // Cognizant Learning Course Functionality
 function initializeCognizantCourses() {
+    // Prevent multiple initializations
+    if (window.cognizantCoursesInitialized) {
+        return;
+    }
+    
     // Add event listeners to all "Start Course" buttons
     const courseButtons = document.querySelectorAll('.start-course-btn');
     
     courseButtons.forEach(button => {
+        // Check if button already has event listener
+        if (button.dataset.initialized === 'true') {
+            return;
+        }
+        
+        button.dataset.initialized = 'true';
         button.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
+            
+            // Prevent double clicks
+            if (this.dataset.processing === 'true') {
+                return;
+            }
+            
+            this.dataset.processing = 'true';
             
             // Get the course name from the table row
             const row = this.closest('tr');
@@ -334,15 +353,21 @@ function initializeCognizantCourses() {
                     setTimeout(() => {
                         this.textContent = 'Start Course';
                         this.disabled = false;
+                        this.dataset.processing = 'false';
                     }, 1000);
                 }, 500);
+            } else {
+                this.dataset.processing = 'false';
             }
         });
     });
     
+    window.cognizantCoursesInitialized = true;
+    
     // Add event listener to the main platform link
     const platformLink = document.querySelector('.platform-link');
-    if (platformLink) {
+    if (platformLink && !platformLink.dataset.initialized) {
+        platformLink.dataset.initialized = 'true';
         platformLink.addEventListener('click', function(e) {
             e.preventDefault();
             
@@ -470,34 +495,6 @@ function handleSingleTrainingCourse(courseKey, button) {
         'investment-mgmt': {
             name: 'Investment Management',
             url: 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D447981%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DInvestment%25252520Management%2526startRow%253D0%26SearchCallerID%3D2'
-        },
-        'data-analytics': {
-            name: 'Data Analytics & Business Intelligence',
-            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
-        },
-        'digital-cx': {
-            name: 'Digital Customer Experience',
-            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
-        },
-        'cybersecurity': {
-            name: 'Cybersecurity Fundamentals',
-            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
-        },
-        'crm': {
-            name: 'CRM Systems & Tools',
-            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
-        },
-        'claims-processing': {
-            name: 'Claims Processing & Management',
-            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
-        },
-        'compliance': {
-            name: 'Compliance & Regulatory Training',
-            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
-        },
-        'leadership': {
-            name: 'Leadership Development',
-            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
         }
     };
 
@@ -550,7 +547,9 @@ function handleSingleTrainingCourse(courseKey, button) {
 document.addEventListener('sectionChanged', (e) => {
     if (e.detail.sectionId === 'assessments') {
         setTimeout(() => {
-            initializeCognizantCourses();
+            if (!window.cognizantCoursesInitialized) {
+                initializeCognizantCourses();
+            }
             enhanceTableInteractions();
         }, 100);
     } else if (e.detail.sectionId === 'trainings') {
