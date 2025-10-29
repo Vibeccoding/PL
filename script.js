@@ -128,10 +128,79 @@ class SPANavigation {
     }
 }
 
-// Initialize SPA Navigation
+// Single consolidated DOM initialization
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize SPA Navigation first
     new SPANavigation();
+    
+    // Initialize all other components after a brief delay
+    setTimeout(() => {
+        initializeCognizantCourses();
+        initializeTrainingButtons();
+        enhanceTableInteractions();
+        initializeContactForm();
+        initializeAssessmentButtons();
+        initializeHeroAnimations();
+    }, 100);
 });
+
+// Assessment button initialization function
+function initializeAssessmentButtons() {
+    document.querySelectorAll('.take-assessment').forEach(button => {
+        button.addEventListener('click', function() {
+            const assessmentName = this.closest('.assessment-item').querySelector('h4').textContent;
+            
+            // Simulate assessment taking
+            this.textContent = 'Starting...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.textContent = 'In Progress';
+                this.style.background = '#f57c00';
+            }, 1000);
+            
+            setTimeout(() => {
+                this.textContent = 'Completed';
+                this.style.background = '#2d7d32';
+            }, 3000);
+            
+            setTimeout(() => {
+                this.textContent = 'Take Assessment';
+                this.style.background = '#0066cc';
+                this.disabled = false;
+            }, 5000);
+            
+            // Show a simple alert (in a real app, this would open the assessment)
+            setTimeout(() => {
+                alert(`Starting assessment: ${assessmentName}\n\nThis would normally open the assessment interface.`);
+            }, 1500);
+        });
+    });
+}
+
+// Hero animations initialization function
+function initializeHeroAnimations() {
+    // Animate stats when hero section becomes active
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                const target = mutation.target;
+                if (target.classList.contains('hero') && target.classList.contains('active')) {
+                    setTimeout(animateStats, 500);
+                }
+            }
+        });
+    });
+
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        observer.observe(heroSection, { attributes: true });
+        // Also animate on initial load if hero is active
+        if (heroSection.classList.contains('active')) {
+            setTimeout(animateStats, 1000);
+        }
+    }
+}
 
 // Essential Functions for SPA
 
@@ -180,39 +249,7 @@ function animateProgress() {
     });
 }
 
-// Assessment Button Interactions
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.take-assessment').forEach(button => {
-        button.addEventListener('click', function() {
-            const assessmentName = this.closest('.assessment-item').querySelector('h4').textContent;
-            
-            // Simulate assessment taking
-            this.textContent = 'Starting...';
-            this.disabled = true;
-            
-            setTimeout(() => {
-                this.textContent = 'In Progress';
-                this.style.background = '#f57c00';
-            }, 1000);
-            
-            setTimeout(() => {
-                this.textContent = 'Completed';
-                this.style.background = '#2d7d32';
-            }, 3000);
-            
-            setTimeout(() => {
-                this.textContent = 'Take Assessment';
-                this.style.background = '#0066cc';
-                this.disabled = false;
-            }, 5000);
-            
-            // Show a simple alert (in a real app, this would open the assessment)
-            setTimeout(() => {
-                alert(`Starting assessment: ${assessmentName}\n\nThis would normally open the assessment interface.`);
-            }, 1500);
-        });
-    });
-});
+// Assessment button handlers will be initialized in main DOM ready
 
 // Stats Counter Animation for Hero Section
 function animateStats() {
@@ -253,30 +290,7 @@ function animateNumber(element, start, end, suffix = '') {
     requestAnimationFrame(update);
 }
 
-// Add enhanced functionality that works with SPA
-document.addEventListener('DOMContentLoaded', () => {
-    // Animate stats when hero section becomes active
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                const target = mutation.target;
-                if (target.classList.contains('hero') && target.classList.contains('active')) {
-                    setTimeout(animateStats, 500);
-                }
-            }
-        });
-    });
-
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        observer.observe(heroSection, { attributes: true });
-        // Also animate on initial load if hero is active
-        if (heroSection.classList.contains('active')) {
-            setTimeout(animateStats, 1000);
-        }
-    }
-});
-
+// Hero animations will be initialized in main DOM ready
 console.log('Pacific Life SPA loaded successfully!');
 
 // Cognizant Learning Course Functionality
@@ -377,10 +391,17 @@ function enhanceTableInteractions() {
 
 // Consolidated training button functionality
 function initializeTrainingButtons() {
+    // Add a flag to prevent multiple initializations
+    if (window.trainingButtonsInitialized) {
+        return;
+    }
+    
     // Clear all existing event listeners first by cloning buttons
     const trainingButtons = document.querySelectorAll('.start-training-btn');
     
     trainingButtons.forEach(button => {
+        // Remove any existing data attributes and event listeners
+        button.removeAttribute('data-processing');
         // Clone the button to remove all event listeners
         const newButton = button.cloneNode(true);
         button.parentNode.replaceChild(newButton, button);
@@ -404,8 +425,12 @@ function initializeTrainingButtons() {
                 this.dataset.processing = 'true';
                 handleSingleTrainingCourse(courseKey, this);
             }
-        });
+        }, { once: false }); // Explicitly set once to false
     });
+    
+    // Mark as initialized
+    window.trainingButtonsInitialized = true;
+    console.log('Training buttons initialized successfully');
 }
 
 // Single, clean training course handler
@@ -498,15 +523,7 @@ function handleSingleTrainingCourse(courseKey, button) {
     }
 }
 
-// Initialize course functionality when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Wait for SPA navigation to be ready
-    setTimeout(() => {
-        initializeCognizantCourses();
-        initializeTrainingButtons(); // Only call this once
-        enhanceTableInteractions();
-    }, 100);
-});
+// Training buttons will be initialized in main DOM ready
 
 // Also initialize when navigating to sections
 document.addEventListener('sectionChanged', (e) => {
@@ -591,10 +608,7 @@ function validateField(field) {
     return isValid;
 }
 
-// Initialize contact form when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initializeContactForm();
-});
+// Contact form will be initialized in main DOM ready
 
 // Also initialize when navigating to support section
 document.addEventListener('sectionChanged', (e) => {
