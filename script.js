@@ -375,58 +375,9 @@ function enhanceTableInteractions() {
     });
 }
 
-// Training functionality for Domain Trainings section
-function handleTrainingCourse(courseKey, button) {
-    // Prevent multiple clicks
-    if (button.disabled) return;
-    
-    const trainingUrls = {
-        'life-insurance': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D2198393%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DLife%25252520Insurance%25252520Fundamentals%2526startRow%253D0%26SearchCallerID%3D2',
-        'annuity-products': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D2288431%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DAnnuity%25252520Products%25252520%25252526%25252520Solutions%2526startRow%253D0%26SearchCallerID%3D2',
-        'risk-assessment': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D430359%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DRisk%25252520Assessment%25252520%25252526%25252520Underwriting%2526startRow%253D20%26SearchCallerID%3D2',
-        'financial-planning': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D1646323%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DFinancial%25252520Planning%25252520%25252526%25252520Analysis%2526startRow%253D0%26SearchCallerID%3D2',
-        'investment-mgmt': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D447981%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DInvestment%25252520Management%2526startRow%253D0%26SearchCallerID%3D2',
-        'data-analytics': 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43',
-        'digital-cx': 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43',
-        'cybersecurity': 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43',
-        'crm': 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43',
-        'claims-processing': 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43',
-        'compliance': 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43',
-        'leadership': 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
-    };
-    
-    const courseNames = {
-        'life-insurance': 'Life Insurance Fundamentals',
-        'annuity-products': 'Annuity Products & Solutions',
-        'risk-assessment': 'Risk Assessment & Underwriting',
-        'financial-planning': 'Financial Planning & Analysis',
-        'investment-mgmt': 'Investment Management',
-        'data-analytics': 'Data Analytics & AI in Insurance',
-        'digital-cx': 'Digital Customer Experience',
-        'cybersecurity': 'Cybersecurity for Financial Services',
-        'crm': 'Customer Relationship Management',
-        'claims-processing': 'Claims Processing Excellence',
-        'compliance': 'Regulatory Compliance & Ethics',
-        'leadership': 'Leadership in Financial Services'
-    };
-    
-    const courseName = courseNames[courseKey] || courseKey;
-    const url = trainingUrls[courseKey] || 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43';
-    
-    if (confirm(`Start "${courseName}" training?\n\nYou will be redirected to Cognizant Learning Platform.`)) {
-        button.textContent = 'Redirecting...';
-        button.disabled = true;
-        
-        setTimeout(() => {
-            window.open(url, '_blank');
-            button.textContent = 'Start Training';
-            button.disabled = false;
-        }, 1000);
-    }
-}
-
+// Consolidated training button functionality
 function initializeTrainingButtons() {
-    // Clear all existing event listeners first
+    // Clear all existing event listeners first by cloning buttons
     const trainingButtons = document.querySelectorAll('.start-training-btn');
     
     trainingButtons.forEach(button => {
@@ -435,81 +386,115 @@ function initializeTrainingButtons() {
         button.parentNode.replaceChild(newButton, button);
     });
     
-    // Get the new buttons and add fresh event listeners
+    // Get the new buttons and add a single event listener
     const newTrainingButtons = document.querySelectorAll('.start-training-btn');
     newTrainingButtons.forEach(button => {
+        // Add a flag to track if button is being processed
         button.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
+            // Prevent double-clicks
+            if (this.dataset.processing === 'true') {
+                return;
+            }
+            
             const courseKey = this.getAttribute('data-course');
             if (courseKey) {
-                handleTrainingCourse(courseKey, this);
+                this.dataset.processing = 'true';
+                handleSingleTrainingCourse(courseKey, this);
             }
         });
     });
 }
 
-// Remove the old startTraining function to prevent conflicts
-function startTraining(courseKey) {
-    // This function is deprecated - using new data-course system
-    console.warn('startTraining function is deprecated, using new data-course system');
-}
-
-// Initialize training functionality when DOM is loaded
-function initializeTrainingCoursesOld() {
-    // Add event listeners to training buttons if they exist
-    const trainingButtons = document.querySelectorAll('.start-training-btn');
-    trainingButtons.forEach(button => {
-        // Remove any existing event listeners
-        button.removeEventListener('click', handleTrainingClick);
-        // Add new event listener
-        button.addEventListener('click', handleTrainingClick);
-    });
-}
-
-function handleTrainingClick(event) {
-    const button = event.target;
-    const row = button.closest('tr');
-    const courseName = row.querySelector('td:first-child').textContent;
-    
-    const originalText = button.textContent;
-    
-    // Define specific course URLs
-    const courseUrls = {
-        'Life Insurance Fundamentals': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D2198393%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DLife%25252520Insurance%25252520Fundamentals%2526startRow%253D0%26SearchCallerID%3D2',
-        'Annuity Products & Solutions': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D2288431%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DAnnuity%25252520Products%25252520%25252526%25252520Solutions%2526startRow%253D0%26SearchCallerID%3D2',
-        'Risk Assessment & Underwriting': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D430359%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DRisk%25252520Assessment%25252520%25252526%25252520Underwriting%2526startRow%253D20%26SearchCallerID%3D2',
-        'Financial Planning & Analysis': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D1646323%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DFinancial%25252520Planning%25252520%25252526%25252520Analysis%2526startRow%253D0%26SearchCallerID%3D2',
-        'Investment Management': 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D447981%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DInvestment%25252520Management%2526startRow%253D0%26SearchCallerID%3D2'
+// Single, clean training course handler
+function handleSingleTrainingCourse(courseKey, button) {
+    // Map course keys to URLs and names
+    const courseData = {
+        'life-insurance': {
+            name: 'Life Insurance Fundamentals',
+            url: 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D2198393%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DLife%25252520Insurance%25252520Fundamentals%2526startRow%253D0%26SearchCallerID%3D2'
+        },
+        'annuity-products': {
+            name: 'Annuity Products & Solutions',
+            url: 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D2288431%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DAnnuity%25252520Products%25252520%25252526%25252520Solutions%2526startRow%253D0%26SearchCallerID%3D2'
+        },
+        'risk-assessment': {
+            name: 'Risk Assessment & Underwriting',
+            url: 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D430359%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DRisk%25252520Assessment%25252520%25252526%25252520Underwriting%2526startRow%253D20%26SearchCallerID%3D2'
+        },
+        'financial-planning': {
+            name: 'Financial Planning & Analysis',
+            url: 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D1646323%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DFinancial%25252520Planning%25252520%25252526%25252520Analysis%2526startRow%253D0%26SearchCallerID%3D2'
+        },
+        'investment-mgmt': {
+            name: 'Investment Management',
+            url: 'https://cognizantlearning.sumtotal.host/rcore/c/pillarRedirect?isDeepLink=1&relyingParty=LM&url=https%3A%2F%2FCOGNIZANTLEARNING.sumtotal.host%2Flearning%2Fcore%2Factivitydetails%2FViewActivityDetails%3FUserMode%3D0%26ActivityId%3D447981%26ClassUnderStruct%3DFalse%26CallerUrl%3D%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D0%26SearchCallerURL%3Dhttps%253A%252F%252FCOGNIZANTLEARNING.sumtotal.host%252Fcore%252FsearchRedirect%253FViewType%253DList%2526SearchText%253DInvestment%25252520Management%2526startRow%253D0%26SearchCallerID%3D2'
+        },
+        'data-analytics': {
+            name: 'Data Analytics & Business Intelligence',
+            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
+        },
+        'digital-cx': {
+            name: 'Digital Customer Experience',
+            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
+        },
+        'cybersecurity': {
+            name: 'Cybersecurity Fundamentals',
+            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
+        },
+        'crm': {
+            name: 'CRM Systems & Tools',
+            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
+        },
+        'claims-processing': {
+            name: 'Claims Processing & Management',
+            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
+        },
+        'compliance': {
+            name: 'Compliance & Regulatory Training',
+            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
+        },
+        'leadership': {
+            name: 'Leadership Development',
+            url: 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43'
+        }
     };
-    
-    // Get the course URL or use default
-    const courseUrl = courseUrls[courseName] || 'https://cognizantlearning.sumtotal.host/core/pillarRedirect?relyingParty=LM&url=https%3A%2F%2Fcognizantlearning.sumtotal.host%2Flearning%2Flearner%2FHome%2FGoToPortal%3Fkey%3D43';
+
+    const course = courseData[courseKey];
+    if (!course) {
+        console.error('Course not found:', courseKey);
+        button.dataset.processing = 'false';
+        return;
+    }
+
+    const originalText = button.textContent;
     
     // Disable button and show loading state
     button.disabled = true;
     button.textContent = 'Loading...';
     
-    // Show confirmation dialog with course name
-    const confirmStart = confirm(`Are you ready to start the "${courseName}" training course? You will be redirected to the Cognizant Learning Platform.`);
+    // Show confirmation dialog
+    const confirmStart = confirm(`Are you ready to start the "${course.name}" training course? You will be redirected to the Cognizant Learning Platform.`);
     
     if (confirmStart) {
-        // Simulate loading and redirect to specific course URL
+        // Redirect to course URL
         setTimeout(() => {
-            // Open specific Cognizant Learning course in new tab
-            window.open(courseUrl, '_blank');
+            window.open(course.url, '_blank');
             
             // Reset button after redirect
             setTimeout(() => {
                 button.disabled = false;
                 button.textContent = originalText;
+                button.dataset.processing = 'false';
             }, 1000);
         }, 500);
     } else {
         // Reset button if user cancels
         button.disabled = false;
         button.textContent = originalText;
+        button.dataset.processing = 'false';
     }
 }
 
@@ -518,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Wait for SPA navigation to be ready
     setTimeout(() => {
         initializeCognizantCourses();
-        initializeTrainingButtons();
+        initializeTrainingButtons(); // Only call this once
         enhanceTableInteractions();
     }, 100);
 });
@@ -532,7 +517,7 @@ document.addEventListener('sectionChanged', (e) => {
         }, 100);
     } else if (e.detail.sectionId === 'trainings') {
         setTimeout(() => {
-            initializeTrainingButtons();
+            initializeTrainingButtons(); // Only call this once
             enhanceTableInteractions();
         }, 100);
     }
