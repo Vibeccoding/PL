@@ -1,0 +1,12 @@
+/* Disabled navigation link styles */
+.nav-link.disabled {
+    color: #999 !important;
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+}
+
+.nav-link.disabled:hover {
+    color: #999 !important;
+    background-color: transparent !important;
+}

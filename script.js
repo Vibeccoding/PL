@@ -18,10 +18,18 @@ class SPANavigation {
         this.navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
+                
+                // Skip disabled links
+                if (link.classList.contains('disabled')) {
+                    return false;
+                }
+                
                 const targetId = link.getAttribute('href').substring(1);
-                this.showSection(targetId);
-                this.updateActiveNavLink(targetId);
-                this.closeMobileMenu();
+                if (targetId) {
+                    this.showSection(targetId);
+                    this.updateActiveNavLink(targetId);
+                    this.closeMobileMenu();
+                }
             });
         });
 
