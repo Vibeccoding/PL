@@ -1,0 +1,11 @@
+# Vercel ignore file
+node_modules/
+.git/
+*.py
+.DS_Store
+.env
+.env.local
+.env.production.local
+.env.development.local
+README.md
+create-placeholders.py

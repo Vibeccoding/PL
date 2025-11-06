@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "pacific-life-website",
+  "outputDirectory": ".",
   "rewrites": [
     {
       "source": "/((?!api/).*)",
