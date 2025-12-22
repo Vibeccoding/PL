@@ -1,0 +1,901 @@
+/* Hybrid Deck Styles - Combining Beginner and Professional */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Calibri', 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1f3a93, #2c5aa0);
+    overflow: hidden;
+}
+
+.deck-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.slide {
+    width: 100%;
+    height: 100vh;
+    padding: 2rem;
+    background: white;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.slide.active {
+    display: flex;
+}
+
+.title-slide {
+    background: linear-gradient(135deg, #1f3a93, #2c5aa0);
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.cognizant-logo {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.cognizant-header {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #1f3a93;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #1f3a93;
+    padding-bottom: 0.5rem;
+}
+
+.title-slide h1 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.title-slide h2 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-top: 1rem;
+}
+
+.slide h2 {
+    font-size: 2.2rem;
+    color: #1f3a93;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.slide h3 {
+    font-size: 1.3rem;
+    color: #1f3a93;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* Dual Explanation Styles */
+.dual-explanation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.simple-side, .professional-side {
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.simple-side {
+    background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+    border-left: 4px solid #28a745;
+}
+
+.professional-side {
+    background: linear-gradient(135deg, #e8f4fd, #d1ecf1);
+    border-left: 4px solid #1f3a93;
+}
+
+.explanation-box {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Market Overview */
+.market-overview {
+    margin-top: 2rem;
+}
+
+.market-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #1f3a93, #2c5aa0);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 200px;
+}
+
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.stat-simple {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+/* Journey Framework */
+.journey-framework {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.journey-phase {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-top: 4px solid #1f3a93;
+}
+
+.phase-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.phase-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.phase-simple {
+    background: #e8f5e8;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid #28a745;
+}
+
+.phase-professional {
+    background: #e8f4fd;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid #1f3a93;
+}
+
+/* Technology Comparison */
+.tech-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.comparison-section h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.old-way {
+    background: #fff5f5;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #dc3545;
+}
+
+.new-way {
+    background: #f0f9ff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #28a745;
+}
+
+.comparison-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+}
+
+.comparison-item .icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.tech-benefits {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid #ffc107;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.benefit-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border-top: 3px solid #1f3a93;
+}
+
+.benefit-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #1f3a93;
+    margin-bottom: 0.5rem;
+}
+
+.benefit-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.benefit-simple {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Capability Overview */
+.capability-overview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid #1f3a93;
+    margin-bottom: 2rem;
+}
+
+.simple-explanation {
+    flex: 1;
+}
+
+.professional-metrics {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.metric-item {
+    background: #1f3a93;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Feature Explanations */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    flex: 1;
+}
+
+.three-column {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.four-column {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    flex: 1;
+}
+
+.feature-explanation {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-top: 3px solid #1f3a93;
+    height: 100%;
+}
+
+.simple-part {
+    background: #e8f5e8;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 3px solid #28a745;
+}
+
+.professional-part {
+    background: #e8f4fd;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid #1f3a93;
+}
+
+.example-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 0.5rem 0;
+    border-left: 3px solid #ffc107;
+}
+
+/* Communication Methods */
+.communication-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.method-item {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.75rem;
+    border-radius: 6px;
+}
+
+.method-icon {
+    font-size: 1.2rem;
+    background: #1f3a93;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Investment Example Timeline */
+.investment-example {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid #28a745;
+    margin-top: 2rem;
+}
+
+.example-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.timeline-step {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border-top: 3px solid #28a745;
+}
+
+.step-number {
+    background: #28a745;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin: 0 auto 0.5rem auto;
+}
+
+.step-content strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #1f3a93;
+}
+
+.step-content small {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+/* Service Scenario */
+.service-example {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid #1f3a93;
+    margin-top: 2rem;
+}
+
+.service-scenario {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.scenario-step {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border-top: 3px solid #1f3a93;
+}
+
+.step-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ROI and Impact */
+.roi-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.simple-explanation, .professional-explanation {
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.simple-explanation {
+    background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+    border-left: 4px solid #28a745;
+}
+
+.professional-explanation {
+    background: linear-gradient(135deg, #e8f4fd, #d1ecf1);
+    border-left: 4px solid #1f3a93;
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.impact-category {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-top: 4px solid #1f3a93;
+}
+
+.impact-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.metric-simple {
+    background: #e8f5e8;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 3px solid #28a745;
+}
+
+.metric-professional {
+    background: #e8f4fd;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid #1f3a93;
+}
+
+.metric-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #1f3a93;
+    margin-bottom: 0.5rem;
+}
+
+.metric-explanation {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+.roi-summary {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.roi-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.roi-item {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.roi-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.roi-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.roi-simple {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+/* Getting Started Dual Path */
+.getting-started-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.beginner-path {
+    background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid #28a745;
+}
+
+.professional-path {
+    background: linear-gradient(135deg, #e8f4fd, #d1ecf1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid #1f3a93;
+}
+
+.beginner-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.step-item {
+    display: flex;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.step-number {
+    background: #28a745;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.tip {
+    background: #fff3cd;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    border-left: 3px solid #ffc107;
+}
+
+.implementation-phases {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.phase-item {
+    display: flex;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.phase-timeline {
+    background: #1f3a93;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    text-align: center;
+    min-width: 80px;
+}
+
+.success-factors {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid #ffc107;
+}
+
+.factors-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.factor-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid #ffc107;
+}
+
+/* Comprehensive Takeaways */
+.takeaways-comprehensive {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.takeaway-dual {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-top: 4px solid #1f3a93;
+}
+
+.takeaway-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.takeaway-simple p {
+    margin-bottom: 0.5rem;
+}
+
+.takeaway-simple p:first-of-type {
+    color: #28a745;
+    font-weight: 500;
+}
+
+.takeaway-simple p:last-of-type {
+    color: #1f3a93;
+    font-weight: 500;
+}
+
+.final-message {
+    background: linear-gradient(135deg, #ffc107, #ffb300);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    color: #333;
+}
+
+/* Contact Section */
+.contact-section {
+    margin: 2rem 0;
+}
+
+.contact-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.contact-simple, .contact-professional {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.contact-simple {
+    border-left: 4px solid #28a745;
+}
+
+.contact-professional {
+    border-left: 4px solid #1f3a93;
+}
+
+.contact-simple h3, .contact-professional h3 {
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.final-cta {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.final-cta h4 {
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Navigation and Footer */
+.slide-footer {
+    position: absolute;
+    bottom: 1rem;
+    left: 2rem;
+    right: 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.title-slide .slide-footer {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.navigation {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 1000;
+}
+
+.navigation button {
+    background: #1f3a93;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.navigation button:hover {
+    background: #2c5aa0;
+}
+
+.navigation button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    position: relative;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+ul li:before {
+    content: "•";
+    color: #1f3a93;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .slide {
+        padding: 1rem;
+    }
+    
+    .title-slide h1 {
+        font-size: 2.5rem;
+    }
+    
+    .slide h2 {
+        font-size: 1.8rem;
+    }
+    
+    .dual-explanation,
+    .two-column,
+    .tech-comparison,
+    .roi-overview,
+    .getting-started-dual,
+    .contact-dual {
+        grid-template-columns: 1fr;
+    }
+    
+    .three-column,
+    .four-column {
+        grid-template-columns: 1fr;
+    }
+    
+    .journey-framework,
+    .impact-grid,
+    .takeaways-comprehensive {
+        grid-template-columns: 1fr;
+    }
+    
+    .market-stats,
+    .benefits-grid,
+    .example-timeline,
+    .service-scenario,
+    .roi-highlights {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .phase-dual,
+    .impact-metrics,
+    .factors-grid {
+        grid-template-columns: 1fr;
+    }
+}
